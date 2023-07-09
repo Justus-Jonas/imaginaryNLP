@@ -1,8 +1,9 @@
-<img src="https://raw.githubusercontent.com/justus-jonas/imaginaryNLP/main/assets/imagine.png">
+<img src="https://raw.githubusercontent.com/justus-jonas/imaginaryNLP/main/assets/imagine.png" alt="drawing" width="300"/>
 
 
 # ImaginaryNLP (NLP+i) for Long-Short Term Dialogue Planning and abstract sequence modeling
 ImaginaryNLP is python library for long-short term dialogue planning and efficient abstract sequence modeling in dialogues. It is based up on Curved Contrastive Learning from the paper [Imagination Is All You Need!](https://aclanthology.org/2023.findings-acl.319) (presented at ACL 2023 in Toronto, Canada)  for [Sentence Transformers](https://sbert.net/).
+
 
 
 ## Installation
