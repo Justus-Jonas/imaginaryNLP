@@ -36,7 +36,7 @@ seq.sequence_modeling_with_precompute("I am doing good. Today I went for a walk.
 ```python
 from imaginaryNLP.ImaginaryEmbeddingsForLTP import ImaginaryEmbeddingsForLTP
 
-ltp = ImaginaryEmbeddingsForLTP('Justus-Jonas/Imaginary-Embeddings-SpeakerTokens', speaker_token=T)
+ltp = ImaginaryEmbeddingsForLTP('Justus-Jonas/Imaginary-Embeddings-SpeakerTokens', speaker_token=True)
 
 # add a contex
 ltp.create_context([' Hello', 'Hi , great to meet you ! '])
