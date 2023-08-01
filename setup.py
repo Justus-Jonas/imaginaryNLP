@@ -7,7 +7,7 @@ with open("README.md", mode="r", encoding="utf-8") as readme_file:
 
 setup(
     name="imaginaryNLP",
-    version="0.0.1",
+    version="0.0.2",
     author="Justus-Jonas Erker",
     author_email="j.erker@student.maastrichtuniversity.nl",
     description="Imaginary Embeddings for NLP",
