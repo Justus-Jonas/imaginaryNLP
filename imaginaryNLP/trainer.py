@@ -1,6 +1,7 @@
 import csv
 import gzip
 import logging
+from os.path import exists
 import random
 from typing import List, Callable, Dict, Type
 
@@ -28,6 +29,7 @@ class ImaginaryEmbeddingTrainer:
                  speaker_token: bool = True,
                  num_epochs: int = 1,
                  warmup_steps: int = 10000,
+                 model_args: Dict = {},
                  ):
 
         self.base_model_name_or_path = base_model_name_or_path
@@ -42,7 +44,7 @@ class ImaginaryEmbeddingTrainer:
         if self.speaker_token:
             tokens += ["[O]", "[E]"]
 
-        base_model = models.Transformer(base_model_name_or_path)
+        base_model = models.Transformer(base_model_name_or_path, model_args=model_args)
 
         base_model.tokenizer.add_tokens(tokens, special_tokens=True)
         base_model.auto_model.resize_token_embeddings(len(base_model.tokenizer))
@@ -94,6 +96,14 @@ class ImaginaryEmbeddingTrainer:
 
             # Check if dataset exsist. If not, download and extract  it
             nli_dataset_path = 'datasets/AllNLI.tsv.gz'
+
+            if not exists(nli_dataset_path):
+                raise Exception(
+                    f"Couldn't find nli dataset file at path: {nli_dataset_path}"
+                    "\nPlease run the following commands to download and save the required file."
+                    "\n$ wget https://sbert.net/datasets/AllNLI.tsv.gz"
+                    "\n$ mv AllNLI.tsv.gz ./datasets/AllNLI.tsv.gz"
+                )
 
             logging.info("Read AllNLI train dataset")
             label2int = {"contradiction": 0, "entailment": 1, "neutral": 2}
@@ -226,7 +236,7 @@ class ImaginaryEmbeddingTrainer:
         if not model_save_path:
             raise ValueError("model_save_path must be specified")
 
-        if not self.dialog_train_dataset:
+        if not getattr(self, "dialog_train_dataset"):
             raise ValueError("You need to first call generate_datasets() before calling train()")
 
         train_dataloader_dialogue = DataLoader(self.dialog_train_dataset, shuffle=True, batch_size=batch_size,
@@ -239,7 +249,7 @@ class ImaginaryEmbeddingTrainer:
 
         if self.mixed_with_nli:
             train_loss_nli = losses.ContrastiveLoss(model=self.model)
-            train_dataloader_nli = DataLoader(self.nli_train_dataset, shuffle=True, batch_size=batch_size,
+            train_dataloader_nli = DataLoader(self.nli_dataset, shuffle=True, batch_size=batch_size,
                                                collate_fn=lambda x: tuple(
                                                    x_.to('cuda') for x_ in default_collate(x)))
 
