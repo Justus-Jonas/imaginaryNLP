@@ -77,6 +77,7 @@ stp.short_term_planning(candidates, goal)
 
 ```python
 from imaginaryNLP.trainer import ImaginaryEmbeddingTrainer
+from datasets import load_dataset
 
 trainer = ImaginaryEmbeddingTrainer(base_model_name_or_path="roberta-base",
                                     batch_size=64,
@@ -84,6 +85,15 @@ trainer = ImaginaryEmbeddingTrainer(base_model_name_or_path="roberta-base",
                                     speaker_token=True,
                                     num_epochs=10,
                                     warmup_steps=10000)
+
+dataset = load_dataset("daily_dialog")
+
+trainer.generate_datasets(
+    dataset["train"]["dialog"],
+    dataset["validation"]["dialog"],
+    dataset["test"]["dialog"],
+)
+      
 
 trainer.train("output/path/to/save/model")
 ```
@@ -135,6 +145,13 @@ stp.add_transformer_candidates("output/path/to/dir")
 
 df = stp.evaluate_stp_dataset("output/path/to/dir")
 ```
+## Datasets & Models
+| Huggingface Dataset                                          | other datasets included                                                                                                                                                                                               | Models                                                                                                                                                      |
+|--------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [daily_dialog](https://huggingface.co/datasets/daily_dialog) | -                                                                                                                                                                                                                     | [Justus-Jonas/Imaginary-Embeddings-SpeakerTokens](https://huggingface.co/Justus-Jonas/Imaginary-Embeddings-SpeakerTokens) <br>  [Justus-Jonas/Imaginary-Embeddings-Classic](https://huggingface.co/Justus-Jonas/Imaginary-Embeddings-Classic) <br>  [Justus-Jonas/Imaginary-Embeddings-SpeakerTokens-STP](https://huggingface.co/Justus-Jonas/Imaginary-Embeddings-SpeakerTokens-STP) * |   
+| [diwank/imaginary-nlp-dataset](diwank/imaginary-nlp-dataset) | [daily_dialog](https://huggingface.co/datasets/daily_dialog) <br>  [allenai/prosocial-dialog](https://huggingface.co/datasets/allenai/prosocial-dialog) <br>  [air_dialogue](https://huggingface.co/datasets/air_dialogue) | -                                                                                                                                                           |
+* explicitly for short-term planning while others are used for sequence modeling and long-term planning.
+
 ### Information on Models availability
 If you are interested in the other models used in the paper, please feel free to checkout our DailyDialog Models [here](https://drive.google.com/drive/folders/1wAB41erCkhhizdkmHmu-ZQsnWphGWb9Y?usp=sharing). 
 Note while this repository is under Apache 2.0 License, the models are under `cc by-nc-sa 4.0` due to the license 
