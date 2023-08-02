@@ -2,7 +2,7 @@
 
 
 # ImaginaryNLP (NLP+i) for Long-Short Term Dialogue Planning and abstract sequence modeling
-ImaginaryNLP is python library for long-short term dialogue planning and efficient abstract sequence modeling in dialogues. It is based upon Curved Contrastive Learning from the paper [Imagination Is All You Need!](https://aclanthology.org/2023.findings-acl.319) (presented at ACL 2023 in Toronto, Canada) and utilizes [Sentence Transformers](https://sbert.net/).
+ImaginaryNLP is python library for long-short term dialogue planning and efficient abstract sequence modeling of dialogues. It is based upon Curved Contrastive Learning from the paper [Imagination Is All You Need!](https://aclanthology.org/2023.findings-acl.319) (presented at ACL 2023 in Toronto, Canada) and utilizes [Sentence Transformers](https://sbert.net/).
 
 
 
