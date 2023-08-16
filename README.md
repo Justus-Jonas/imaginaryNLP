@@ -123,7 +123,9 @@ ltp = EvalImaginaryEmbeddingsForLTP('Justus-Jonas/Imaginary-Embeddings-Classic',
 dataset = load_dataset("daily_dialog")
 test = dataset['test']['dialog']
 
-df = ltp.evaluate_ltp_dataset(test,"output/path/to/dir")
+ltp.create_ltp_dataset(test, "output/path/to/dir")
+
+df = ltp.evaluate_ltp_dataset("output/path/to/dir")
 ```
 
 ### Short-Term Planning
