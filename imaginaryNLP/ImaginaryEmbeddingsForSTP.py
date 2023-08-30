@@ -216,7 +216,7 @@ class EvalImaginaryEmbeddingsForSTP(ImaginaryEmbeddingsForSTP):
                         true_utterance = "[E] [BEFORE] " + row['Candidate']
                     else:
                         utterances = ["[O] [BEFORE] " + utterance for utterance in row['GPT_candidates']]
-                        true_utterance = "[0] [BEFORE] " + row['Candidate']
+                        true_utterance = "[O] [BEFORE] " + row['Candidate']
                 else:
                     utterances = ["[BEFORE] " + utterance for utterance in row['GPT_candidates']]
                     true_utterance = "[BEFORE] " + row['Candidate']

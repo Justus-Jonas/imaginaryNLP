@@ -7,14 +7,14 @@ with open("README.md", mode="r", encoding="utf-8") as readme_file:
 
 setup(
     name="imaginaryNLP",
-    version="0.0.2",
+    version="0.0.4",
     author="Justus-Jonas Erker",
     author_email="j.erker@student.maastrichtuniversity.nl",
     description="Imaginary Embeddings for NLP",
     long_description=readme,
     long_description_content_type="text/markdown",
     license="Apache License 2.0",
-    download_url="https://github.com/Justus-Jonas/nlp-i",
+    download_url="https://github.com/Justus-Jonas/imaginaryNLP",
     packages=find_packages(),
     python_requires=">=3.6.0",
     install_requires=[
